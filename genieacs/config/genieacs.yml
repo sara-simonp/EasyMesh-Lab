@@ -1,0 +1,66 @@
+# GeniaACS Configuration File
+# EasyMesh Lab Setup
+
+# Database configuration
+db:
+  host: mongo
+  port: 27017
+  name: genieacs
+  username: null
+  password: null
+  authSource: null
+
+# Redis configuration (cache)
+redis:
+  host: redis
+  port: 6379
+  db: 0
+
+# CWMP (TR-069) Server configuration
+cwmp:
+  host: 0.0.0.0
+  port: 7557
+  ssl:
+    port: 7558
+    cert: null
+    key: null
+  useUriPathAsDeviceId: true
+  accessLog: /app/logs/cwmp-access.log
+  errorLog: /app/logs/cwmp-error.log
+
+# Web UI configuration
+ui:
+  host: 0.0.0.0
+  port: 8080
+  ssl:
+    port: null
+    cert: null
+    key: null
+  accessLog: /app/logs/ui-access.log
+  errorLog: /app/logs/ui-error.log
+
+# REST API configuration
+restapi:
+  host: 0.0.0.0
+  port: 3000
+  ssl:
+    port: null
+    cert: null
+    key: null
+  accessLog: /app/logs/api-access.log
+  errorLog: /app/logs/api-error.log
+
+# Logging
+logging:
+  level: info
+  format: text
+
+# Advanced settings
+auth:
+  username: admin
+  password: admin
+
+# Device settings
+deviceSearch:
+  pageSize: 20
+  maxResults: 100

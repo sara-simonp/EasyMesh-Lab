@@ -1,0 +1,6 @@
+simulator:
+  name: EasyMesh-Simulator
+  version: 1.0
+  acs_url: http://172.25.0.10:7547
+  port: 7547
+  #port: 8888

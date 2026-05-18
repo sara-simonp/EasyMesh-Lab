@@ -1,0 +1,175 @@
+# ---------------------------------------------------------
+# EasyMesh Lab - Docker Compose (CORREGIDO)
+# Copyright 2026
+# ---------------------------------------------------------
+version: "3.8"
+
+services:
+  # ---------------------------------------------------------
+  # MongoDB Database for GenieACS
+  # ---------------------------------------------------------
+  mongo:
+    container_name: mongo-db
+    image: mongo:5.0
+    networks:
+      easymesh-net:
+        ipv4_address: 172.25.0.20
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    healthcheck:
+      test: [
+          "CMD-SHELL",
+          'mongosh -u admin -p admin --authenticationDatabase admin --eval
+          "db.adminCommand(''ping'')"',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  # ---------------------------------------------------------
+  # Redis Cache for GenieACS
+  # ---------------------------------------------------------
+  redis:
+    container_name: redis-cache
+    image: redis:7-alpine
+    networks:
+      easymesh-net:
+        ipv4_address: 172.25.0.21
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # ---------------------------------------------------------
+  # GenieACS - ACS Server (TR-069)
+  # ---------------------------------------------------------
+  genieacs:
+    build:
+      context: ./genieacs
+      dockerfile: Dockerfile
+    container_name: genieacs-acs
+    restart: unless-stopped
+    networks:
+      easymesh-net:
+        ipv4_address: 172.25.0.10
+
+    ports:
+      - "7547:7547"
+      - "7557:7557"
+      - "7567:7567"
+      - "3000:3000"
+      - "8080:8080"
+    environment:
+      GENIEACS_MONGODB_CONNECTION_URL: mongodb://admin:admin@mongo:27017/genieacs?authSource=admin
+      GENIEACS_UI_JWT_SECRET: dev_lab_secret_change_me
+      GENIEACS_CWMP_INTERFACE: 0.0.0.0
+      GENIEACS_NBI_INTERFACE: 0.0.0.0
+      GENIEACS_FS_INTERFACE: 0.0.0.0
+      GENIEACS_UI_INTERFACE: 0.0.0.0
+      GENIEACS_CWMP_PORT: 7547
+      GENIEACS_NBI_PORT: 7557
+      GENIEACS_FS_PORT: 7567
+      GENIEACS_UI_PORT: 3000
+    volumes:
+      - ./genieacs/config:/opt/genieacs/ext
+      - genieacs_logs:/var/log/genieacs
+    depends_on:
+      mongo:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -fsS http://127.0.0.1:7557/devices >/dev/null || exit 1",
+        ]
+      interval: 15s
+      timeout: 10s
+      retries: 12
+      start_period: 75s
+
+  # ---------------------------------------------------------
+  # prplMesh Simulator - EasyMesh Controller & Agents
+  # ---------------------------------------------------------
+  easymesh-simulator:
+    build:
+      context: ./easymesh-simulator
+      dockerfile: Dockerfile
+    container_name: easymesh-simulator
+    restart: unless-stopped
+    privileged: true
+    networks:
+      easymesh-net:
+        ipv4_address: 172.25.0.40
+    ports:
+      - "6510:6510"
+      - "7590:7590"
+    volumes:
+      - ./easymesh-simulator/config:/app/config
+      - ./captures:/tmp/captures
+    depends_on:
+      genieacs:
+        condition: service_healthy
+    environment:
+      - CONTROLLER_IP=172.25.0.40
+      - CONTROLLER_PORT=6510
+      - ACS_IP=172.25.0.10
+      - ACS_PORT=7547
+      - ACS_URL=http://172.25.0.10:7547
+    tty: true
+
+  # ---------------------------------------------------------
+  # tcpdump - Network Packet Capture
+  # ---------------------------------------------------------
+  sniffer:
+    container_name: tcpdump-sniffer
+    privileged: true
+    image: corfr/tcpdump
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    # networks:
+    # easymesh-net:
+    # ipv4_address: 172.25.0.30
+    network_mode: host
+    volumes:
+      - ./captures:/data
+    depends_on:
+      - genieacs
+    command:
+      [
+        "-i",
+        "br-easymesh",
+        "-w",
+        "/data/sniffer.pcap",
+        "-s",
+        "0",
+        "-c",
+        "10000",
+      ]
+    # command:
+    #  ["-i", "br-sdnnet", "-w", "/data/sniffer.pcap", "-s", "0", "-c", "10000"]
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
+  genieacs_logs:
+
+networks:
+  easymesh-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/24
+          gateway: 172.25.0.1
+    driver_opts:
+      com.docker.network.bridge.name: br-easymesh

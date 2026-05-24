@@ -104,8 +104,10 @@ services:
     build:
       context: ./easymesh-simulator
       dockerfile: Dockerfile
+      args:
+        PRPLMESH_REPO: https://gitlab.com/prpl-foundation/prplmesh/prplMesh.git
+        PRPLMESH_REF: stable/v1.7
     container_name: easymesh-simulator
-    restart: unless-stopped
     privileged: true
     networks:
       easymesh-net:

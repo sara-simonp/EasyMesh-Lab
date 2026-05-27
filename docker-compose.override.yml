@@ -1,0 +1,24 @@
+services:
+  easymesh-tr069-adapter:
+    build:
+      context: ./adapter
+      dockerfile: Dockerfile
+    container_name: easymesh-tr069-adapter
+    depends_on:
+      - easymesh-simulator
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./tr069-data:/data
+    restart: "no"
+
+  tr069-sim:
+    build:
+      context: ./tr069-sim
+      dockerfile: Dockerfile
+    container_name: tr069-sim
+    depends_on:
+      - genieacs
+      - easymesh-tr069-adapter
+    volumes:
+      - ./tr069-data:/data:ro
+    restart: unless-stopped

@@ -162,6 +162,20 @@ services:
     #  ["-i", "br-sdnnet", "-w", "/data/sniffer.pcap", "-s", "0", "-c", "10000"]
     restart: unless-stopped
 
+  # ---------------------------------------------------------
+  # tr-069 - Simulador de TR-069 para pruebas de ACS
+  # ---------------------------------------------------------
+  tr069-sim:
+    build:
+      context: ./tr069-sim
+      dockerfile: Dockerfile
+    container_name: tr069-sim
+    depends_on:
+      - genieacs
+    networks:
+      - easymesh-net
+    restart: unless-stopped
+
 volumes:
   mongo_data:
   genieacs_logs:

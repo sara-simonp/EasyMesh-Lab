@@ -1,0 +1,21 @@
+{
+  "name": "getParameterValues",
+  "parameterNames": [
+    "InternetGatewayDevice.X_SARA_EasyMesh.ControllerStatus",
+    "InternetGatewayDevice.X_SARA_EasyMesh.GatewayName",
+    "InternetGatewayDevice.X_SARA_EasyMesh.GatewayMac",
+    "InternetGatewayDevice.X_SARA_EasyMesh.RadioNumber",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.1.Interface",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.1.MACAddress",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.1.Channel",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.1.Bandwidth",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.1.FrequencyMHz",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.1.Band",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.2.Interface",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.2.MACAddress",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.2.Channel",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.2.Bandwidth",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.2.FrequencyMHz",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Radio.2.Band"
+  ]
+}

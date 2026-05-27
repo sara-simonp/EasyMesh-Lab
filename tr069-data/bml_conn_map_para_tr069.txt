@@ -1,0 +1,5 @@
+bml_connect: return value is: BML_RET_OK, Success status
+bml_nw_map_query: return value is: BML_RET_OK, Success status
+
+Connection map is empty...
+bml_disconnect: return value is: BML_RET_OK, Success status

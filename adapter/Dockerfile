@@ -1,6 +1,6 @@
 FROM docker:27-cli
 
-RUN apk add --no-cache bash grep sed coreutils
+RUN apk add --no-cache bash grep sed coreutils jq
 
 COPY generate-easymesh-datamodel.sh /usr/local/bin/generate-easymesh-datamodel.sh
 

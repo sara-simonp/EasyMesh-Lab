@@ -1,0 +1,27 @@
+{
+  "name": "getParameterValues",
+  "parameterNames": [
+    "InternetGatewayDevice.X_SARA_EasyMesh.Profile",
+    "InternetGatewayDevice.X_SARA_EasyMesh.ScenarioId",
+    "InternetGatewayDevice.X_SARA_EasyMesh.ScenarioName",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Controller.AgentNumber",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Controller.TotalClientNumber",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.Name",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.BackhaulType",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.ClientNumber",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.Client.1.Hostname",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.Client.1.RSSI",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.Client.2.Hostname",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.Client.2.RSSI",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.2.Name",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.2.BackhaulType",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.2.BackhaulRSSI",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.2.ClientNumber",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.2.Client.1.Hostname",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.2.Client.1.RSSI",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Event.1.Type",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Event.1.FromAgent",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Event.1.ToAgent",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Event.1.Result"
+  ]
+}

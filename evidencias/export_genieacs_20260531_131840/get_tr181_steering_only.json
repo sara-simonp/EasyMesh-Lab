@@ -1,0 +1,13 @@
+{
+  "name": "getParameterValues",
+  "parameterNames": [
+    "Device.WiFi.DataElements.Network.Device.2.STA.2.Hostname",
+    "Device.WiFi.DataElements.Network.Device.2.STA.2.ConnectedDevice",
+    "Device.WiFi.DataElements.Network.Device.2.STA.2.SignalStrength",
+    "Device.WiFi.DataElements.Network.Device.2.STANumberOfEntries",
+    "Device.WiFi.DataElements.Network.Event.1.Type",
+    "Device.WiFi.DataElements.Network.Event.1.FromDevice",
+    "Device.WiFi.DataElements.Network.Event.1.ToDevice",
+    "Device.WiFi.DataElements.Network.Event.1.Result"
+  ]
+}

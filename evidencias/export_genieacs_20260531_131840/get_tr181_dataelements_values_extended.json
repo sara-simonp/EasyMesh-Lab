@@ -1,0 +1,38 @@
+{
+  "name": "getParameterValues",
+  "parameterNames": [
+    "Device.WiFi.DataElements.Network.Controller.AgentNumber",
+    "Device.WiFi.DataElements.Network.Controller.TotalClientNumber",
+
+    "Device.WiFi.DataElements.Network.Device.1.Name",
+    "Device.WiFi.DataElements.Network.Device.1.BackhaulType",
+    "Device.WiFi.DataElements.Network.Device.1.BackhaulRSSI",
+    "Device.WiFi.DataElements.Network.Device.1.STANumberOfEntries",
+    "Device.WiFi.DataElements.Network.Device.1.STA.1.Hostname",
+    "Device.WiFi.DataElements.Network.Device.1.STA.1.ConnectedDevice",
+    "Device.WiFi.DataElements.Network.Device.1.STA.1.SignalStrength",
+    "Device.WiFi.DataElements.Network.Device.1.STA.2.Hostname",
+    "Device.WiFi.DataElements.Network.Device.1.STA.2.ConnectedDevice",
+    "Device.WiFi.DataElements.Network.Device.1.STA.2.SignalStrength",
+    "Device.WiFi.DataElements.Network.Device.1.Radio.1.Utilization",
+    "Device.WiFi.DataElements.Network.Device.1.Radio.2.Utilization",
+
+    "Device.WiFi.DataElements.Network.Device.2.Name",
+    "Device.WiFi.DataElements.Network.Device.2.BackhaulType",
+    "Device.WiFi.DataElements.Network.Device.2.BackhaulRSSI",
+    "Device.WiFi.DataElements.Network.Device.2.STANumberOfEntries",
+    "Device.WiFi.DataElements.Network.Device.2.STA.1.Hostname",
+    "Device.WiFi.DataElements.Network.Device.2.STA.1.ConnectedDevice",
+    "Device.WiFi.DataElements.Network.Device.2.STA.1.SignalStrength",
+    "Device.WiFi.DataElements.Network.Device.2.STA.2.Hostname",
+    "Device.WiFi.DataElements.Network.Device.2.STA.2.ConnectedDevice",
+    "Device.WiFi.DataElements.Network.Device.2.STA.2.SignalStrength",
+    "Device.WiFi.DataElements.Network.Device.2.Radio.1.Utilization",
+    "Device.WiFi.DataElements.Network.Device.2.Radio.2.Utilization",
+
+    "Device.WiFi.DataElements.Network.Event.1.Type",
+    "Device.WiFi.DataElements.Network.Event.1.FromDevice",
+    "Device.WiFi.DataElements.Network.Event.1.ToDevice",
+    "Device.WiFi.DataElements.Network.Event.1.Result"
+  ]
+}

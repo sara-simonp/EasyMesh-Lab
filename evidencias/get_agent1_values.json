@@ -1,0 +1,12 @@
+{
+  "name": "getParameterValues",
+  "parameterNames": [
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.Name",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.BackhaulType",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.ClientNumber",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.Client.1.Hostname",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.Client.1.RSSI",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.Client.2.Hostname",
+    "InternetGatewayDevice.X_SARA_EasyMesh.Agent.1.Client.2.RSSI"
+  ]
+}

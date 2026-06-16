@@ -1,0 +1,23 @@
+services:
+  easymesh-network-simulator:
+    build:
+      context: ./simulator/easymesh-network-simulator
+    container_name: easymesh-network-simulator
+    restart: unless-stopped
+    ports:
+      - "9200:9200"
+    environment:
+      - SIM_PORT=9200
+      - DATA_DIR=/data
+      - WRITE_TR181_CSV=1
+      - DEFAULT_SCENARIO=normal
+      - RANDOM_SEED=2526
+    volumes:
+      - ./tr069-data:/data
+    networks:
+      - easymesh-net
+
+networks:
+  easymesh-net:
+    external: true
+    name: easymesh-lab_easymesh-net

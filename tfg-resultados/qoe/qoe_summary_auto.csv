@@ -1,0 +1,4 @@
+﻿"latest_timestamp","scenario","client","connected_ap","device_index","sta_index","signal_strength_dbm","radio_utilization_avg_pct","backhaul_type","backhaul_rssi_dbm","event_type","event_from","event_to","event_result","qoe_state","source_file"
+"30/05/2026 22:09:09","normal","MOVIL_SARA","AP_SALON","1","2","-52","34","Ethernet","0","None","","","NoEvent","Buena","devices_tr181_normal.json"
+"31/05/2026 11:41:04","cliente_lejos","MOVIL_SARA","AP_SALON","1","2","-74","60","Ethernet","0","LowRSSI","AP_SALON","","CandidateForSteering","Degradada","devices_tr181_cliente_lejos.json"
+"31/05/2026 12:59:46","steering","MOVIL_SARA","AP_DORMITORIO","2","2","-49","42","WiFi-5GHz","-51","ClientSteering","AP_SALON","AP_DORMITORIO","Success","Recuperada","devices_tr181_steering.json"

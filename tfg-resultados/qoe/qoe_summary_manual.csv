@@ -1,0 +1,4 @@
+scenario,client,connected_ap,signal_strength_dbm,event_type,event_result,qoe_state,interpretacion
+normal,MOVIL_SARA,AP_SALON,-52,None,NoEvent,Buena,Cliente conectado con señal correcta y sin eventos de degradacion
+cliente_lejos,MOVIL_SARA,AP_SALON,-74,LowRSSI,CandidateForSteering,Degradada,Cliente con baja señal y candidato a steering
+steering,MOVIL_SARA,AP_DORMITORIO,-49,ClientSteering,Success,Recuperada,Cliente movido correctamente al AP dormitorio con mejora de señal

@@ -1,0 +1,26 @@
+grupo,metrica,ruta_referencia_pdf,ruta_laboratorio,unidad,uso_qoe,estado
+DeviceInfo,Fabricante,Device.DeviceInfo.Manufacturer,InternetGatewayDevice.DeviceInfo.Manufacturer,texto,Identificar el CPE gestionado,Parcial
+DeviceInfo,SoftwareVersion,Device.DeviceInfo.SoftwareVersion,InternetGatewayDevice.DeviceInfo.SoftwareVersion,texto,Identificar la version del CPE virtual,Implementada
+WiFi Radio,Canal,Device.WiFi.Radio.*.Channel,Device.WiFi.DataElements.Network.Device.X.Radio.Y.Channel,numero,Identificar el canal usado por cada radio,Implementada
+WiFi Radio,Banda,Device.WiFi.Radio.*.OperatingFrequencyBand,Device.WiFi.DataElements.Network.Device.X.Radio.Y.Band,texto,Diferenciar 2.4GHz y 5GHz,Implementada
+WiFi Radio,AnchoCanal,Device.WiFi.Radio.*.CurrentOperatingChannelBandwidth,Device.WiFi.DataElements.Network.Device.X.Radio.Y.CurrentOperatingChannelBandwidth,texto,Caracterizar configuracion radio,Implementada
+WiFi Radio,Utilizacion,Device.WiFi.DataElements.Network.Device.*.Radio.*.Utilization,Device.WiFi.DataElements.Network.Device.X.Radio.Y.Utilization,porcentaje,Detectar carga o saturacion del canal,Implementada
+Cliente WiFi,SignalStrength,Device.WiFi.AccessPoint.*.AssociatedDevice.*.SignalStrength,Device.WiFi.DataElements.Network.Device.X.STA.Y.SignalStrength,dBm,Medir calidad de señal del cliente,Implementada
+Cliente WiFi,MACAddress,Device.WiFi.AccessPoint.*.AssociatedDevice.*.MACAddress,Device.WiFi.DataElements.Network.Device.X.STA.Y.MACAddress,texto,Identificar y correlacionar cliente,Implementada parcial
+Cliente WiFi,Hostname,Device.Hosts.Host.*.HostName,Device.WiFi.DataElements.Network.Device.X.STA.Y.Hostname,texto,Identificar dispositivo de usuario,Implementada
+Cliente WiFi,ConnectedDevice,No aplica directo,Device.WiFi.DataElements.Network.Device.X.STA.Y.ConnectedDevice,texto,Saber a que AP esta asociado el cliente,Implementada
+Cliente WiFi,LastDataDownlinkRate,Device.WiFi.AccessPoint.*.AssociatedDevice.*.LastDataDownlinkRate,Device.WiFi.DataElements.Network.Device.X.STA.Y.LastDataDownlinkRate,Mbps,Estimar calidad de enlace descendente,Implementada parcial
+Cliente WiFi,LastDataUplinkRate,Device.WiFi.AccessPoint.*.AssociatedDevice.*.LastDataUplinkRate,Device.WiFi.DataElements.Network.Device.X.STA.Y.LastDataUplinkRate,Mbps,Estimar calidad de enlace ascendente,Implementada parcial
+EasyMesh,NumeroSTAs,Device.WiFi.DataElements.Network.Device.*.Radio.*.BSS.*.STANumberOfEntries,Device.WiFi.DataElements.Network.Device.X.STANumberOfEntries,numero,Saber cuantos clientes cuelgan de cada AP,Implementada
+EasyMesh,BackhaulType,No aparece igual en el PDF,Device.WiFi.DataElements.Network.Device.X.BackhaulType,texto,Saber si el AP usa Ethernet o WiFi como backhaul,Implementada
+EasyMesh,BackhaulRSSI,No aparece igual en el PDF,Device.WiFi.DataElements.Network.Device.X.BackhaulRSSI,dBm,Medir calidad del enlace backhaul,Implementada
+EasyMesh,EventType,No aparece igual en el PDF,Device.WiFi.DataElements.Network.Event.1.Type,texto,Detectar eventos LowRSSI o ClientSteering,Implementada
+EasyMesh,EventFromDevice,No aparece igual en el PDF,Device.WiFi.DataElements.Network.Event.1.FromDevice,texto,Identificar AP origen del evento,Implementada
+EasyMesh,EventToDevice,No aparece igual en el PDF,Device.WiFi.DataElements.Network.Event.1.ToDevice,texto,Identificar AP destino del steering,Implementada
+EasyMesh,EventResult,No aparece igual en el PDF,Device.WiFi.DataElements.Network.Event.1.Result,texto,Saber si el evento fue candidato o exitoso,Implementada
+Trabajo futuro,Noise,Device.WiFi.DataElements.Network.Device.*.Radio.*.Noise,No implementada,dBm,Medir ruido radio,Trabajo futuro
+Trabajo futuro,BytesSent,Device.WiFi.DataElements.Network.Device.*.Radio.*.BSS.*.STA.*.BytesSent,No implementada,bytes,Medir trafico enviado por cliente,Trabajo futuro
+Trabajo futuro,BytesReceived,Device.WiFi.DataElements.Network.Device.*.Radio.*.BSS.*.STA.*.BytesReceived,No implementada,bytes,Medir trafico recibido por cliente,Trabajo futuro
+Trabajo futuro,LastConnectTime,Device.WiFi.DataElements.Network.Device.*.Radio.*.BSS.*.STA.*.LastConnectTime,No implementada,timestamp,Correlacion temporal avanzada,Trabajo futuro
+Trabajo futuro,CPUUsage,Device.DeviceInfo.ProcessStatus.CPUUsage,No implementada,porcentaje,Salud del CPE,Trabajo futuro
+Trabajo futuro,MemoryFree,Device.DeviceInfo.MemoryStatus.Free,No implementada,bytes,Salud del CPE,Trabajo futuro

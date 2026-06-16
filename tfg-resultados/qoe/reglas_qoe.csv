@@ -1,0 +1,9 @@
+indicador,metrica,regla,estado_qoe,explicacion
+CalidadSenal,SignalStrength,SignalStrength > -60,Buena,El cliente tiene buena cobertura WiFi
+CalidadSenal,SignalStrength,-70 < SignalStrength <= -60,Media,El cliente mantiene conectividad pero con margen reducido
+CalidadSenal,SignalStrength,SignalStrength <= -70,Degradada,El cliente tiene baja señal y puede experimentar mala QoE
+CargaRadio,Utilization,Utilization < 50,Baja,Canal con poca carga
+CargaRadio,Utilization,50 <= Utilization <= 75,MediaAlta,Canal con carga media o alta
+CargaRadio,Utilization,Utilization > 75,Congestionada,Canal potencialmente congestionado
+Steering,Event.Type + Event.Result,ClientSteering + Success,Recuperada,El cliente ha sido movido a otro AP con exito
+LowRSSI,Event.Type + Event.Result,LowRSSI + CandidateForSteering,Degradada,El cliente es candidato a steering por baja señal

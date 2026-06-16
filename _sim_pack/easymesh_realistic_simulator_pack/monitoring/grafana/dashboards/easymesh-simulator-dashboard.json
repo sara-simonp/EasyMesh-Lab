@@ -1,0 +1,146 @@
+{
+  "uid": "easymesh-simulator-realistic",
+  "title": "EasyMesh Network Simulator - QoE/TR-181",
+  "tags": ["EasyMesh", "Simulator", "QoE", "TR-181", "TFG"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "10s",
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Simulador",
+      "gridPos": {"x": 0, "y": 0, "w": 4, "h": 4},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "easymesh_simulator_up", "instant": true}],
+      "fieldConfig": {"defaults": {"mappings": [{"type": "value", "options": {"0": {"text": "DOWN", "color": "red"}, "1": {"text": "UP", "color": "green"}}}], "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "green", "value": 1}]}}},
+      "options": {"reduceOptions": {"values": false, "calcs": ["lastNotNull"], "fields": ""}, "orientation": "auto", "textMode": "auto", "colorMode": "background", "graphMode": "none", "justifyMode": "center"}
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "QoE MOVIL_SARA",
+      "gridPos": {"x": 4, "y": 0, "w": 5, "h": 4},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "easymesh_sim_mobile_qoe_state", "instant": true, "legendFormat": "{{state}} / {{ap}}"}],
+      "fieldConfig": {"defaults": {"mappings": [{"type": "value", "options": {"1": {"text": "Critica", "color": "red"}, "2": {"text": "Degradada", "color": "red"}, "3": {"text": "Media", "color": "yellow"}, "4": {"text": "Buena", "color": "green"}, "5": {"text": "Recuperada", "color": "blue"}}}], "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "yellow", "value": 3}, {"color": "green", "value": 4}, {"color": "blue", "value": 5}]}}},
+      "options": {"reduceOptions": {"values": false, "calcs": ["lastNotNull"], "fields": ""}, "orientation": "auto", "textMode": "auto", "colorMode": "background", "graphMode": "none", "justifyMode": "center"}
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "RSSI MOVIL_SARA",
+      "gridPos": {"x": 9, "y": 0, "w": 5, "h": 4},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "easymesh_sim_client_signal_dbm{client=\"MOVIL_SARA\"}", "instant": true, "legendFormat": "{{ap}}"}],
+      "fieldConfig": {"defaults": {"unit": "dBm", "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "yellow", "value": -70}, {"color": "green", "value": -60}]}}},
+      "options": {"reduceOptions": {"values": false, "calcs": ["lastNotNull"], "fields": ""}, "orientation": "auto", "textMode": "auto", "colorMode": "background", "graphMode": "area", "justifyMode": "center"}
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Score QoE MOVIL_SARA",
+      "gridPos": {"x": 14, "y": 0, "w": 5, "h": 4},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "easymesh_sim_client_qoe_score{client=\"MOVIL_SARA\"}", "instant": true, "legendFormat": "{{state}}"}],
+      "fieldConfig": {"defaults": {"unit": "percent", "min": 0, "max": 100, "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "yellow", "value": 60}, {"color": "green", "value": 80}]}}},
+      "options": {"reduceOptions": {"values": false, "calcs": ["lastNotNull"], "fields": ""}, "orientation": "auto", "textMode": "auto", "colorMode": "background", "graphMode": "area", "justifyMode": "center"}
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "Steering acumulado",
+      "gridPos": {"x": 19, "y": 0, "w": 5, "h": 4},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "easymesh_sim_steering_count_total", "instant": true}],
+      "fieldConfig": {"defaults": {"thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}]}}},
+      "options": {"reduceOptions": {"values": false, "calcs": ["lastNotNull"], "fields": ""}, "orientation": "auto", "textMode": "auto", "colorMode": "background", "graphMode": "none", "justifyMode": "center"}
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "RSSI por cliente y AP",
+      "gridPos": {"x": 0, "y": 4, "w": 12, "h": 8},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "easymesh_sim_client_signal_dbm", "legendFormat": "{{client}} - {{ap}}"}],
+      "fieldConfig": {"defaults": {"unit": "dBm", "custom": {"drawStyle": "line", "lineInterpolation": "linear", "lineWidth": 2, "fillOpacity": 15, "showPoints": "auto"}, "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "yellow", "value": -70}, {"color": "green", "value": -60}]}}},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "single", "sort": "none"}}
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "Utilizacion de radio por AP/banda",
+      "gridPos": {"x": 12, "y": 4, "w": 12, "h": 8},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"refId": "A", "expr": "easymesh_sim_radio_utilization_percent", "legendFormat": "{{ap}} {{band}} ch{{channel}}"}],
+      "fieldConfig": {"defaults": {"unit": "percent", "min": 0, "max": 100, "custom": {"drawStyle": "line", "lineInterpolation": "linear", "lineWidth": 2, "fillOpacity": 15, "showPoints": "auto"}, "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}, {"color": "yellow", "value": 55}, {"color": "red", "value": 75}]}}},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "single", "sort": "none"}}
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "Latencia / Jitter MOVIL_SARA",
+      "gridPos": {"x": 0, "y": 12, "w": 8, "h": 8},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [
+        {"refId": "A", "expr": "easymesh_sim_client_latency_ms{client=\"MOVIL_SARA\"}", "legendFormat": "latencia {{ap}}"},
+        {"refId": "B", "expr": "easymesh_sim_client_jitter_ms{client=\"MOVIL_SARA\"}", "legendFormat": "jitter {{ap}}"}
+      ],
+      "fieldConfig": {"defaults": {"unit": "ms", "custom": {"drawStyle": "line", "lineInterpolation": "linear", "lineWidth": 2, "fillOpacity": 10, "showPoints": "auto"}}},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "single", "sort": "none"}}
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "title": "Perdida y reintentos MOVIL_SARA",
+      "gridPos": {"x": 8, "y": 12, "w": 8, "h": 8},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [
+        {"refId": "A", "expr": "easymesh_sim_client_packet_loss_percent{client=\"MOVIL_SARA\"}", "legendFormat": "loss {{ap}}"},
+        {"refId": "B", "expr": "easymesh_sim_client_retry_rate_percent{client=\"MOVIL_SARA\"}", "legendFormat": "retry {{ap}}"}
+      ],
+      "fieldConfig": {"defaults": {"unit": "percent", "min": 0, "custom": {"drawStyle": "line", "lineInterpolation": "linear", "lineWidth": 2, "fillOpacity": 10, "showPoints": "auto"}}},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "single", "sort": "none"}}
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "title": "Throughput MOVIL_SARA",
+      "gridPos": {"x": 16, "y": 12, "w": 8, "h": 8},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [
+        {"refId": "A", "expr": "easymesh_sim_client_throughput_down_mbps{client=\"MOVIL_SARA\"}", "legendFormat": "down {{ap}}"},
+        {"refId": "B", "expr": "easymesh_sim_client_throughput_up_mbps{client=\"MOVIL_SARA\"}", "legendFormat": "up {{ap}}"}
+      ],
+      "fieldConfig": {"defaults": {"unit": "Mbits", "custom": {"drawStyle": "line", "lineInterpolation": "linear", "lineWidth": 2, "fillOpacity": 10, "showPoints": "auto"}}},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "single", "sort": "none"}}
+    },
+    {
+      "id": 11,
+      "type": "timeseries",
+      "title": "Backhaul satelite",
+      "gridPos": {"x": 0, "y": 20, "w": 12, "h": 8},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [
+        {"refId": "A", "expr": "easymesh_sim_backhaul_rssi_dbm", "legendFormat": "RSSI {{ap}}"},
+        {"refId": "B", "expr": "easymesh_sim_backhaul_latency_ms", "legendFormat": "latency {{ap}}"},
+        {"refId": "C", "expr": "easymesh_sim_backhaul_packet_loss_percent", "legendFormat": "loss {{ap}}"}
+      ],
+      "fieldConfig": {"defaults": {"custom": {"drawStyle": "line", "lineInterpolation": "linear", "lineWidth": 2, "fillOpacity": 10, "showPoints": "auto"}}},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "single", "sort": "none"}}
+    },
+    {
+      "id": 12,
+      "type": "table",
+      "title": "Evento / escenario actual",
+      "gridPos": {"x": 12, "y": 20, "w": 12, "h": 8},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [
+        {"refId": "A", "expr": "easymesh_sim_event_info", "instant": true, "format": "table"},
+        {"refId": "B", "expr": "easymesh_sim_scenario_info", "instant": true, "format": "table"}
+      ],
+      "options": {"showHeader": true}
+    }
+  ]
+}

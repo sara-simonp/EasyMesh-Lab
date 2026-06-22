@@ -1,0 +1,5 @@
+﻿services:
+  tr069-sim:
+    volumes:
+      - ./tr069-data:/data
+      - ./tr069-data:/tr069-data

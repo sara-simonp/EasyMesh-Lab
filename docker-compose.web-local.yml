@@ -1,0 +1,17 @@
+﻿services:
+  pag-web:
+    image: nginx:alpine
+    container_name: pag-web
+    ports:
+      - "8181:80"
+    volumes:
+      - ./pag-web:/usr/share/nginx/html:ro
+    networks:
+      easymesh-net:
+        ipv4_address: 172.25.0.60
+    restart: unless-stopped
+
+networks:
+  easymesh-net:
+    external: true
+    name: easymesh-lab_easymesh-net

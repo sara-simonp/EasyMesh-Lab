@@ -1,0 +1,183 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "easymesh-simulator-final",
+    "title": "EasyMesh QoE - Simulador Final",
+    "tags": ["EasyMesh", "QoE", "TR-181", "GenieACS", "Prometheus"],
+    "timezone": "browser",
+    "schemaVersion": 39,
+    "version": 1,
+    "refresh": "5s",
+    "time": {
+      "from": "now-30m",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "type": "stat",
+        "title": "GenieACS conectado",
+        "gridPos": {"x": 0, "y": 0, "w": 4, "h": 4},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "genieacs_up", "refId": "A"}
+        ],
+        "options": {
+          "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+        }
+      },
+      {
+        "id": 2,
+        "type": "stat",
+        "title": "Agentes EasyMesh",
+        "gridPos": {"x": 4, "y": 0, "w": 4, "h": 4},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "easymesh_agent_number", "refId": "A"}
+        ],
+        "options": {
+          "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+        }
+      },
+      {
+        "id": 3,
+        "type": "stat",
+        "title": "Clientes WiFi",
+        "gridPos": {"x": 8, "y": 0, "w": 4, "h": 4},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "easymesh_total_client_number", "refId": "A"}
+        ],
+        "options": {
+          "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+        }
+      },
+      {
+        "id": 4,
+        "type": "stat",
+        "title": "RSSI MOVIL_SARA vía GenieACS",
+        "gridPos": {"x": 12, "y": 0, "w": 6, "h": 4},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "easymesh_client_signal_strength_dbm{client=\"MOVIL_SARA\"}", "refId": "A"}
+        ],
+        "fieldConfig": {
+          "defaults": {"unit": "dBm"},
+          "overrides": []
+        },
+        "options": {
+          "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+        }
+      },
+      {
+        "id": 5,
+        "type": "stat",
+        "title": "QoE MOVIL_SARA vía GenieACS",
+        "gridPos": {"x": 18, "y": 0, "w": 6, "h": 4},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "easymesh_client_qoe_state{client=\"MOVIL_SARA\"}", "refId": "A"}
+        ],
+        "options": {
+          "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+        }
+      },
+      {
+        "id": 6,
+        "type": "timeseries",
+        "title": "RSSI clientes - simulador final",
+        "gridPos": {"x": 0, "y": 4, "w": 12, "h": 8},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "easymesh_sim_client_signal_dbm", "legendFormat": "{{client}} - {{ap}}", "refId": "A"}
+        ],
+        "fieldConfig": {
+          "defaults": {"unit": "dBm"},
+          "overrides": []
+        }
+      },
+      {
+        "id": 7,
+        "type": "timeseries",
+        "title": "QoE Score clientes - simulador final",
+        "gridPos": {"x": 12, "y": 4, "w": 12, "h": 8},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "easymesh_sim_client_qoe_score", "legendFormat": "{{client}} - {{ap}}", "refId": "A"}
+        ],
+        "fieldConfig": {
+          "defaults": {"unit": "percent"},
+          "overrides": []
+        }
+      },
+      {
+        "id": 8,
+        "type": "timeseries",
+        "title": "Utilización radio por AP",
+        "gridPos": {"x": 0, "y": 12, "w": 12, "h": 8},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "easymesh_sim_radio_utilization_percent", "legendFormat": "{{ap}} {{band}}", "refId": "A"}
+        ],
+        "fieldConfig": {
+          "defaults": {"unit": "percent"},
+          "overrides": []
+        }
+      },
+      {
+        "id": 9,
+        "type": "timeseries",
+        "title": "Latencia clientes",
+        "gridPos": {"x": 12, "y": 12, "w": 12, "h": 8},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "easymesh_sim_client_latency_ms", "legendFormat": "{{client}} - {{ap}}", "refId": "A"}
+        ],
+        "fieldConfig": {
+          "defaults": {"unit": "ms"},
+          "overrides": []
+        }
+      },
+      {
+        "id": 10,
+        "type": "timeseries",
+        "title": "Pérdida de paquetes clientes",
+        "gridPos": {"x": 0, "y": 20, "w": 12, "h": 8},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "easymesh_sim_client_packet_loss_percent", "legendFormat": "{{client}} - {{ap}}", "refId": "A"}
+        ],
+        "fieldConfig": {
+          "defaults": {"unit": "percent"},
+          "overrides": []
+        }
+      },
+      {
+        "id": 11,
+        "type": "timeseries",
+        "title": "Backhaul RSSI",
+        "gridPos": {"x": 12, "y": 20, "w": 12, "h": 8},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "easymesh_sim_backhaul_rssi_dbm", "legendFormat": "{{ap}} {{backhaul_type}}", "refId": "A"}
+        ],
+        "fieldConfig": {
+          "defaults": {"unit": "dBm"},
+          "overrides": []
+        }
+      },
+      {
+        "id": 12,
+        "type": "table",
+        "title": "Evento EasyMesh actual",
+        "gridPos": {"x": 0, "y": 28, "w": 24, "h": 6},
+        "datasource": {"type": "prometheus", "uid": "prometheus"},
+        "targets": [
+          {"expr": "easymesh_sim_event_info", "format": "table", "instant": true, "refId": "A"}
+        ]
+      }
+    ]
+  },
+  "folderId": 0,
+  "overwrite": true
+}

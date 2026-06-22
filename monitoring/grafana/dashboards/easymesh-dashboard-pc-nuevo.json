@@ -1,0 +1,267 @@
+{
+    "dashboard":  {
+                      "schemaVersion":  39,
+                      "id":  null,
+                      "version":  1,
+                      "panels":  [
+                                     {
+                                         "id":  1,
+                                         "gridPos":  {
+                                                         "y":  0,
+                                                         "w":  6,
+                                                         "h":  4,
+                                                         "x":  0
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "refId":  "A",
+                                                             "expr":  "genieacs_up"
+                                                         }
+                                                     ],
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "type":  "stat",
+                                         "options":  {
+                                                         "reduceOptions":  {
+                                                                               "values":  false,
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "fields":  ""
+                                                                           }
+                                                     },
+                                         "title":  "GenieACS conectado"
+                                     },
+                                     {
+                                         "id":  2,
+                                         "gridPos":  {
+                                                         "y":  0,
+                                                         "w":  6,
+                                                         "h":  4,
+                                                         "x":  6
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "refId":  "A",
+                                                             "expr":  "easymesh_agent_number"
+                                                         }
+                                                     ],
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "type":  "stat",
+                                         "options":  {
+                                                         "reduceOptions":  {
+                                                                               "values":  false,
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "fields":  ""
+                                                                           }
+                                                     },
+                                         "title":  "Agentes EasyMesh"
+                                     },
+                                     {
+                                         "id":  3,
+                                         "gridPos":  {
+                                                         "y":  0,
+                                                         "w":  6,
+                                                         "h":  4,
+                                                         "x":  12
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "refId":  "A",
+                                                             "expr":  "easymesh_total_client_number"
+                                                         }
+                                                     ],
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "type":  "stat",
+                                         "options":  {
+                                                         "reduceOptions":  {
+                                                                               "values":  false,
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "fields":  ""
+                                                                           }
+                                                     },
+                                         "title":  "Clientes WiFi"
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "unit":  "dBm"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  4,
+                                         "gridPos":  {
+                                                         "y":  0,
+                                                         "w":  6,
+                                                         "h":  4,
+                                                         "x":  18
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "RSSI MOVIL_SARA vía GenieACS",
+                                         "targets":  [
+                                                         {
+                                                             "refId":  "A",
+                                                             "expr":  "easymesh_client_signal_strength_dbm{client=\"MOVIL_SARA\"}"
+                                                         }
+                                                     ],
+                                         "type":  "stat",
+                                         "options":  {
+                                                         "reduceOptions":  {
+                                                                               "values":  false,
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "fields":  ""
+                                                                           }
+                                                     }
+                                     },
+                                     {
+                                         "id":  5,
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "unit":  "dBm"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "gridPos":  {
+                                                         "y":  4,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  0
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "legendFormat":  "{{client}} - {{ap}}",
+                                                             "expr":  "easymesh_sim_client_signal_dbm",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "type":  "timeseries",
+                                         "title":  "RSSI clientes - simulador final"
+                                     },
+                                     {
+                                         "id":  6,
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "unit":  "percent"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "gridPos":  {
+                                                         "y":  4,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  12
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "legendFormat":  "{{client}} - {{ap}}",
+                                                             "expr":  "easymesh_sim_client_qoe_score",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "type":  "timeseries",
+                                         "title":  "QoE Score clientes - simulador final"
+                                     },
+                                     {
+                                         "id":  7,
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "unit":  "percent"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "gridPos":  {
+                                                         "y":  12,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  0
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "legendFormat":  "{{ap}} {{band}}",
+                                                             "expr":  "easymesh_sim_radio_utilization_percent",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "type":  "timeseries",
+                                         "title":  "Utilización radio por AP"
+                                     },
+                                     {
+                                         "id":  8,
+                                         "gridPos":  {
+                                                         "y":  12,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  12
+                                                     },
+                                         "targets":  [
+                                                         {
+                                                             "refId":  "A",
+                                                             "expr":  "easymesh_sim_event_info",
+                                                             "instant":  true,
+                                                             "format":  "table"
+                                                         }
+                                                     ],
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "type":  "table",
+                                         "title":  "Evento EasyMesh actual"
+                                     }
+                                 ],
+                      "tags":  [
+                                   "EasyMesh",
+                                   "QoE",
+                                   "TR-181",
+                                   "GenieACS",
+                                   "Prometheus"
+                               ],
+                      "time":  {
+                                   "to":  "now",
+                                   "from":  "now-30m"
+                               },
+                      "timezone":  "browser",
+                      "refresh":  "5s",
+                      "title":  "EasyMesh QoE - Simulador Final",
+                      "uid":  "easymesh-simulator-final"
+                  },
+    "folderId":  0,
+    "overwrite":  true
+}

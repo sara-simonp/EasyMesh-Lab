@@ -1,0 +1,1236 @@
+{
+    "dashboard":  {
+                      "schemaVersion":  39,
+                      "version":  1,
+                      "panels":  [
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "unit":  "none"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  1,
+                                         "gridPos":  {
+                                                         "y":  0,
+                                                         "w":  6,
+                                                         "h":  4,
+                                                         "x":  0
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Simulador EasyMesh activo",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "simulator",
+                                                             "expr":  "easymesh_simulator_up",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "stat",
+                                         "options":  {
+                                                         "textMode":  "auto",
+                                                         "colorMode":  "value",
+                                                         "graphMode":  "area",
+                                                         "reduceOptions":  {
+                                                                               "values":  false,
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "fields":  ""
+                                                                           },
+                                                         "justifyMode":  "auto",
+                                                         "orientation":  "auto"
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "unit":  "none"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  2,
+                                         "gridPos":  {
+                                                         "y":  0,
+                                                         "w":  6,
+                                                         "h":  4,
+                                                         "x":  6
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "GenieACS conectado",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "genieacs",
+                                                             "expr":  "genieacs_up",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "stat",
+                                         "options":  {
+                                                         "textMode":  "auto",
+                                                         "colorMode":  "value",
+                                                         "graphMode":  "area",
+                                                         "reduceOptions":  {
+                                                                               "values":  false,
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "fields":  ""
+                                                                           },
+                                                         "justifyMode":  "auto",
+                                                         "orientation":  "auto"
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "unit":  "none"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  3,
+                                         "gridPos":  {
+                                                         "y":  0,
+                                                         "w":  6,
+                                                         "h":  4,
+                                                         "x":  12
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "CSV de evidencias guardados",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{kind}}",
+                                                             "expr":  "easymesh_csv_snapshots_total",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "stat",
+                                         "options":  {
+                                                         "textMode":  "auto",
+                                                         "colorMode":  "value",
+                                                         "graphMode":  "area",
+                                                         "reduceOptions":  {
+                                                                               "values":  false,
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "fields":  ""
+                                                                           },
+                                                         "justifyMode":  "auto",
+                                                         "orientation":  "auto"
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "unit":  "none"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  4,
+                                         "gridPos":  {
+                                                         "y":  0,
+                                                         "w":  6,
+                                                         "h":  4,
+                                                         "x":  18
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Steering acumulado",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "steering",
+                                                             "expr":  "easymesh_sim_steering_count_total",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "stat",
+                                         "options":  {
+                                                         "textMode":  "auto",
+                                                         "colorMode":  "value",
+                                                         "graphMode":  "area",
+                                                         "reduceOptions":  {
+                                                                               "values":  false,
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "fields":  ""
+                                                                           },
+                                                         "justifyMode":  "auto",
+                                                         "orientation":  "auto"
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "dBm"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  5,
+                                         "gridPos":  {
+                                                         "y":  4,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  0
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "RSSI MOVIL_SARA - simulador final",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{client}} - {{ap}}",
+                                                             "expr":  "easymesh_sim_client_signal_dbm{client=\"MOVIL_SARA\"}",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "none"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  6,
+                                         "gridPos":  {
+                                                         "y":  4,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  12
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "QoE MOVIL_SARA - simulador final",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{client}} - {{ap}} - {{state}}",
+                                                             "expr":  "easymesh_sim_client_qoe_score{client=\"MOVIL_SARA\"}",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "ms"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  7,
+                                         "gridPos":  {
+                                                         "y":  12,
+                                                         "w":  8,
+                                                         "h":  7,
+                                                         "x":  0
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Latencia MOVIL_SARA",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{client}} - {{ap}}",
+                                                             "expr":  "easymesh_sim_client_latency_ms{client=\"MOVIL_SARA\"}",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "ms"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  8,
+                                         "gridPos":  {
+                                                         "y":  12,
+                                                         "w":  8,
+                                                         "h":  7,
+                                                         "x":  8
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Jitter MOVIL_SARA",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{client}} - {{ap}}",
+                                                             "expr":  "easymesh_sim_client_jitter_ms{client=\"MOVIL_SARA\"}",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "percent"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  9,
+                                         "gridPos":  {
+                                                         "y":  12,
+                                                         "w":  8,
+                                                         "h":  7,
+                                                         "x":  16
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Pérdida de paquetes MOVIL_SARA",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{client}} - {{ap}}",
+                                                             "expr":  "easymesh_sim_client_packet_loss_percent{client=\"MOVIL_SARA\"}",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "percent"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  10,
+                                         "gridPos":  {
+                                                         "y":  19,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  0
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Utilización radio por AP",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{ap}} - {{radio}} - {{band}}",
+                                                             "expr":  "easymesh_sim_radio_utilization_percent",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "dBm"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  11,
+                                         "gridPos":  {
+                                                         "y":  19,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  12
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Ruido radio por AP",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{ap}} - {{radio}} - {{band}}",
+                                                             "expr":  "easymesh_sim_radio_noise_dbm",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "dBm"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  12,
+                                         "gridPos":  {
+                                                         "y":  27,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  0
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "RSSI backhaul EasyMesh",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{ap}} - {{type}}",
+                                                             "expr":  "easymesh_sim_backhaul_rssi_dbm",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "ms"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  13,
+                                         "gridPos":  {
+                                                         "y":  27,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  12
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Latencia backhaul EasyMesh",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{ap}} - {{type}}",
+                                                             "expr":  "easymesh_sim_backhaul_latency_ms",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  14,
+                                         "gridPos":  {
+                                                         "y":  35,
+                                                         "w":  24,
+                                                         "h":  7,
+                                                         "x":  0
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Evento EasyMesh actual",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{type}} {{from_device}} -\u003e {{to_device}} {{result}}",
+                                                             "expr":  "easymesh_sim_event_info",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "table",
+                                         "options":  {
+                                                         "showHeader":  true
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "none"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  15,
+                                         "gridPos":  {
+                                                         "y":  42,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  0
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "QoE desde CSV TR-181",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{scenario}} - {{parameter}}",
+                                                             "expr":  "easymesh_csv_tr181_numeric_value{parameter=\"Device.X_SARA_QoE.QoEScore\"}",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "dBm"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  16,
+                                         "gridPos":  {
+                                                         "y":  42,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  12
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "RSSI desde CSV TR-181",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{scenario}} - {{parameter}}",
+                                                             "expr":  "easymesh_csv_tr181_numeric_value{parameter=\"Device.X_SARA_QoE.SignalStrength\"}",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "ms"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  17,
+                                         "gridPos":  {
+                                                         "y":  50,
+                                                         "w":  8,
+                                                         "h":  7,
+                                                         "x":  0
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Latencia desde CSV TR-181",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{scenario}}",
+                                                             "expr":  "easymesh_csv_tr181_numeric_value{parameter=\"Device.X_SARA_QoE.LatencyMs\"}",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "percent"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  18,
+                                         "gridPos":  {
+                                                         "y":  50,
+                                                         "w":  8,
+                                                         "h":  7,
+                                                         "x":  8
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Pérdida desde CSV TR-181",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{scenario}}",
+                                                             "expr":  "easymesh_csv_tr181_numeric_value{parameter=\"Device.X_SARA_QoE.PacketLossPercent\"}",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  19,
+                                         "gridPos":  {
+                                                         "y":  50,
+                                                         "w":  8,
+                                                         "h":  7,
+                                                         "x":  16
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Eventos desde CSV TR-181",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{type}} {{from_device}} -\u003e {{to_device}} {{result}}",
+                                                             "expr":  "easymesh_csv_tr181_info{parameter=~\".*Event.*\"}",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "table",
+                                         "options":  {
+                                                         "showHeader":  true
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "dBm"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  20,
+                                         "gridPos":  {
+                                                         "y":  57,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  0
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "RSSI vía GenieACS / TR-069",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{client}} - {{ap}}",
+                                                             "expr":  "easymesh_client_signal_strength_dbm",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "percent"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  21,
+                                         "gridPos":  {
+                                                         "y":  57,
+                                                         "w":  12,
+                                                         "h":  8,
+                                                         "x":  12
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Utilización radio vía GenieACS",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{ap}}",
+                                                             "expr":  "easymesh_radio_utilization_avg_percent",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "unit":  "none"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  22,
+                                         "gridPos":  {
+                                                         "y":  65,
+                                                         "w":  8,
+                                                         "h":  4,
+                                                         "x":  0
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Agentes EasyMesh vía GenieACS",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "agents",
+                                                             "expr":  "easymesh_agent_number",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "stat",
+                                         "options":  {
+                                                         "textMode":  "auto",
+                                                         "colorMode":  "value",
+                                                         "graphMode":  "area",
+                                                         "reduceOptions":  {
+                                                                               "values":  false,
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "fields":  ""
+                                                                           },
+                                                         "justifyMode":  "auto",
+                                                         "orientation":  "auto"
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "unit":  "none"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  23,
+                                         "gridPos":  {
+                                                         "y":  65,
+                                                         "w":  8,
+                                                         "h":  4,
+                                                         "x":  8
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Clientes WiFi vía GenieACS",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "clients",
+                                                             "expr":  "easymesh_total_client_number",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "stat",
+                                         "options":  {
+                                                         "textMode":  "auto",
+                                                         "colorMode":  "value",
+                                                         "graphMode":  "area",
+                                                         "reduceOptions":  {
+                                                                               "values":  false,
+                                                                               "calcs":  [
+                                                                                             "lastNotNull"
+                                                                                         ],
+                                                                               "fields":  ""
+                                                                           },
+                                                         "justifyMode":  "auto",
+                                                         "orientation":  "auto"
+                                                     }
+                                     },
+                                     {
+                                         "fieldConfig":  {
+                                                             "defaults":  {
+                                                                              "custom":  {
+                                                                                             "fillOpacity":  15,
+                                                                                             "spanNulls":  false,
+                                                                                             "showPoints":  "auto",
+                                                                                             "drawStyle":  "line",
+                                                                                             "lineWidth":  2,
+                                                                                             "lineInterpolation":  "linear"
+                                                                                         },
+                                                                              "unit":  "dBm"
+                                                                          },
+                                                             "overrides":  [
+
+                                                                           ]
+                                                         },
+                                         "id":  24,
+                                         "gridPos":  {
+                                                         "y":  65,
+                                                         "w":  8,
+                                                         "h":  4,
+                                                         "x":  16
+                                                     },
+                                         "datasource":  {
+                                                            "type":  "prometheus",
+                                                            "uid":  "PBFA97CFB590B2093"
+                                                        },
+                                         "title":  "Backhaul vía GenieACS",
+                                         "targets":  [
+                                                         {
+                                                             "datasource":  {
+                                                                                "type":  "prometheus",
+                                                                                "uid":  "PBFA97CFB590B2093"
+                                                                            },
+                                                             "legendFormat":  "{{ap}} - {{backhaul_type}}",
+                                                             "expr":  "easymesh_backhaul_rssi_dbm",
+                                                             "refId":  "A"
+                                                         }
+                                                     ],
+                                         "type":  "timeseries",
+                                         "options":  {
+                                                         "legend":  {
+                                                                        "placement":  "bottom",
+                                                                        "showLegend":  true,
+                                                                        "displayMode":  "list"
+                                                                    },
+                                                         "tooltip":  {
+                                                                         "sort":  "none",
+                                                                         "mode":  "single"
+                                                                     }
+                                                     }
+                                     }
+                                 ],
+                      "tags":  [
+                                   "TFG",
+                                   "EasyMesh",
+                                   "TR-181",
+                                   "TR-069",
+                                   "GenieACS",
+                                   "Prometheus"
+                               ],
+                      "time":  {
+                                   "to":  "now",
+                                   "from":  "now-30m"
+                               },
+                      "timezone":  "browser",
+                      "refresh":  "5s",
+                      "title":  "TFG EasyMesh - Simulador final TR-181 TR-069 QoE",
+                      "uid":  "tfg-easymesh-final"
+                  },
+    "overwrite":  true,
+    "message":  "Dashboard TFG EasyMesh final creado desde PowerShell"
+}

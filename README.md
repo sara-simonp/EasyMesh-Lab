@@ -1,27 +1,32 @@
-# EasyMesh Lab — Monitorización QoE con TR-069, TR-181, Prometheus y Grafana
+# EasyMesh Lab - Monitorizacion QoE con TR-069, TR-181, Prometheus y Grafana
 
-Repositorio del laboratorio desarrollado para el TFG **“Monitorización de Experiencia de Cliente en redes WiFi EasyMesh”**.
+Repositorio del laboratorio desarrollado para el TFG "Monitorizacion de Experiencia de Cliente en redes WiFi EasyMesh".
 
-El objetivo del proyecto es construir un entorno reproducible basado en Docker para simular una red WiFi EasyMesh residencial, generar telemetría estructurada tipo TR-181/DataElements, integrarla con GenieACS mediante TR-069 y visualizar indicadores de experiencia de cliente mediante Prometheus y Grafana.
+El objetivo del proyecto es construir un entorno reproducible basado en Docker para simular una red WiFi EasyMesh residencial, generar telemetria estructurada tipo TR-181/DataElements, integrarla con GenieACS mediante TR-069 y visualizar indicadores de experiencia de cliente mediante Prometheus y Grafana.
 
 ---
 
 ## 1. Objetivo del laboratorio
 
-El laboratorio permite analizar la experiencia de cliente en una red WiFi distribuida formada por un gateway principal, un punto de acceso satélite y varios clientes WiFi.
+El laboratorio permite analizar la experiencia de cliente en una red WiFi distribuida formada por:
 
-El sistema reproduce escenarios controlados como:
+* un gateway principal;
+* un punto de acceso satelite;
+* varios clientes WiFi;
+* un cliente movil usado para analizar QoE y roaming.
 
-* funcionamiento normal;
-* cobertura degradada;
-* interferencias;
-* saturación de radio;
+El sistema reproduce escenarios controlados:
+
+* normal;
+* coverage;
+* interference;
+* saturation;
 * roaming;
-* degradación del backhaul;
-* fallo de un punto de acceso;
-* escenario mixto.
+* backhaul_degraded;
+* ap_failure;
+* mixed.
 
-Para cada escenario se generan métricas de:
+Para cada escenario se generan metricas de:
 
 * RSSI;
 * SNR;
@@ -29,67 +34,63 @@ Para cada escenario se generan métricas de:
 * throughput;
 * latencia;
 * jitter;
-* pérdida de paquetes;
+* perdida de paquetes;
 * retry rate;
-* utilización de radio;
+* utilizacion de radio;
 * estado del backhaul;
 * eventos EasyMesh;
-* puntuación QoE.
+* puntuacion QoE.
 
 ---
 
 ## 2. Alcance del simulador
 
-El componente principal del laboratorio es un simulador de comportamiento y telemetría EasyMesh.
+El componente principal del laboratorio es un simulador de comportamiento y telemetria EasyMesh.
 
-El simulador **no implementa una certificación EasyMesh real**, ni el plano de control completo IEEE 1905.1, ni una capa física WiFi exacta. Su función es generar telemetría coherente y reproducible para estudiar cómo podría monitorizarse la experiencia de usuario en una red EasyMesh mediante TR-181, GenieACS, Prometheus y Grafana.
+El simulador no implementa una certificacion EasyMesh real, ni el plano de control completo IEEE 1905.1, ni una capa fisica WiFi exacta. Su funcion es generar telemetria coherente y reproducible para estudiar como podria monitorizarse la experiencia de usuario en una red EasyMesh mediante TR-181, GenieACS, Prometheus y Grafana.
 
 Por tanto, el laboratorio debe interpretarse como:
 
-> Simulador de telemetría EasyMesh orientado a QoE y validación de pipeline de observabilidad.
+```text
+Simulador de telemetria EasyMesh orientado a QoE y validacion de pipeline de observabilidad.
+```
 
 Y no como:
 
-> Implementación certificada completa de EasyMesh.
+```text
+Implementacion certificada completa de EasyMesh.
+```
 
 ---
 
 ## 3. Arquitectura general
 
-La arquitectura final del laboratorio es:
+Arquitectura final del laboratorio:
 
 ```text
 easymesh-network-simulator
- ├── /state
- ├── /metrics
- ├── /scenarios
- ├── /set?scenario=...
- └── data_model_easymesh.csv
-          │
-          ├── tr069-sim
-          │       └── GenieACS
-          │              └── genieacs-qoe-exporter
-          │                       └── Prometheus
-          │                              └── Grafana
-          │
-          └── csv-prometheus-exporter
-                  └── Prometheus
-                         └── Grafana
+  |-- /state
+  |-- /metrics
+  |-- /scenarios
+  |-- /set?scenario=...
+  |-- data_model_easymesh.csv
+          |
+          |-- tr069-sim
+          |       |-- GenieACS
+          |              |-- genieacs-qoe-exporter
+          |                       |-- Prometheus
+          |                              |-- Grafana
+          |
+          |-- csv-prometheus-exporter
+                  |-- Prometheus
+                         |-- Grafana
 ```
 
 El laboratorio tiene tres rutas de observabilidad:
 
-1. **Simulador directo → Prometheus → Grafana**
-
-   Métricas `easymesh_sim_*` generadas directamente por el simulador.
-
-2. **CSV TR-181 histórico → CSV exporter → Prometheus → Grafana**
-
-   Métricas `easymesh_csv_*` generadas a partir de CSV guardados por escenario.
-
-3. **TR-069 / GenieACS → QoE exporter → Prometheus → Grafana**
-
-   Métricas `easymesh_*` obtenidas desde los parámetros cargados en GenieACS.
+1. Simulador directo a Prometheus y Grafana.
+2. CSV TR-181 historico a CSV exporter, Prometheus y Grafana.
+3. TR-069 / GenieACS a QoE exporter, Prometheus y Grafana.
 
 ---
 
@@ -156,15 +157,19 @@ Servicio Docker:
 genieacs-acs
 ```
 
-URLs principales:
+URLs:
 
 ```text
-GenieACS UI:    http://localhost:3000
-GenieACS NBI:   http://localhost:7557/devices
-GenieACS CWMP:  http://localhost:7547
+GenieACS UI:   http://localhost:3000
+GenieACS NBI:  http://localhost:7557/devices
+GenieACS CWMP: http://localhost:7547
 ```
 
-GenieACS actúa como ACS para gestionar el CPE virtual y almacenar los parámetros recibidos mediante TR-069.
+Funcion:
+
+```text
+Actua como ACS para gestionar el CPE virtual y almacenar parametros recibidos mediante TR-069.
+```
 
 ---
 
@@ -176,7 +181,7 @@ Servicio Docker:
 tr069-sim
 ```
 
-Función:
+Funcion:
 
 ```text
 Lee el CSV TR-181 generado por el simulador y lo expone hacia GenieACS como dispositivo CWMP.
@@ -216,16 +221,25 @@ Endpoint:
 http://localhost:9108/metrics
 ```
 
-Este exporter consulta GenieACS y expone métricas Prometheus relacionadas con:
+Funcion:
 
-* estado de GenieACS;
-* número de agentes EasyMesh;
-* número de clientes;
-* RSSI de cliente;
-* utilización de radio;
-* backhaul;
-* eventos;
-* estado QoE.
+```text
+Consulta GenieACS y expone metricas Prometheus derivadas de los parametros TR-181/DataElements.
+```
+
+Metricas principales:
+
+```text
+genieacs_up
+easymesh_agent_number
+easymesh_total_client_number
+easymesh_event_info
+easymesh_radio_utilization_avg_percent
+easymesh_backhaul_rssi_dbm
+easymesh_client_signal_strength_dbm
+easymesh_client_qoe_state
+easymesh_target_client_found
+```
 
 ---
 
@@ -243,7 +257,7 @@ URL:
 http://localhost:9090
 ```
 
-Archivo de configuración:
+Archivo de configuracion:
 
 ```text
 monitoring/prometheus/prometheus.yml
@@ -285,7 +299,7 @@ Dashboard principal:
 TFG EasyMesh - Simulador final TR-181 TR-069 QoE
 ```
 
-Script de creación del dashboard:
+Script de creacion del dashboard:
 
 ```text
 crear_dashboard_grafana_tfg.ps1
@@ -325,13 +339,13 @@ Endpoint:
 http://localhost:9210/metrics
 ```
 
-Función:
+Funcion:
 
 ```text
-Lee los CSV históricos guardados en tfg-resultados/simulador/csv y los transforma en métricas Prometheus.
+Lee los CSV historicos guardados en tfg-resultados/simulador/csv y los transforma en metricas Prometheus.
 ```
 
-Métricas principales:
+Metricas principales:
 
 ```text
 easymesh_csv_exporter_up
@@ -350,58 +364,60 @@ Estructura principal:
 
 ```text
 EasyMesh-Lab/
-│
-├── docker-compose.yml
-├── docker-compose.monitoring.yml
-├── docker-compose.simulator-final-local.yml
-├── docker-compose.csv-exporter.yml
-├── docker-compose.prometheus-local.yml
-│
-├── simulator/
-│   └── easymesh-network-simulator/
-│       ├── app.py
-│       └── Dockerfile
-│
-├── tr069-sim/
-│   ├── Dockerfile
-│   └── ...
-│
-├── genieacs/
-│   ├── Dockerfile
-│   ├── supervisord.conf
-│   └── config/
-│
-├── monitoring/
-│   ├── prometheus/
-│   │   └── prometheus.yml
-│   ├── grafana/
-│   │   ├── dashboards/
-│   │   └── provisioning/
-│   └── qoe-exporter/
-│       ├── app.py
-│       └── Dockerfile
-│
-├── tools/
-│   └── csv-exporter/
-│       └── csv_exporter.py
-│
-├── tr069-data/
-│   ├── data_model_easymesh.csv
-│   ├── easymesh_simulator_state.json
-│   └── easymesh_simulator_summary.txt
-│
-├── tfg-resultados/
-│   ├── scripts/
-│   ├── simulador/
-│   │   ├── csv/
-│   │   ├── capturas/
-│   │   └── resumen/
-│   └── evidencias/
-│
-├── pag-web/
-│   └── index.html
-│
-└── README.md
+|
+|-- docker-compose.yml
+|-- docker-compose.monitoring.yml
+|-- docker-compose.simulator-final-local.yml
+|-- docker-compose.csv-exporter.yml
+|-- docker-compose.prometheus-local.yml
+|-- docker-compose.tr069-local.yml
+|-- docker-compose.web-local.yml
+|
+|-- simulator/
+|   |-- easymesh-network-simulator/
+|       |-- app.py
+|       |-- Dockerfile
+|
+|-- tr069-sim/
+|   |-- Dockerfile
+|   |-- ...
+|
+|-- genieacs/
+|   |-- Dockerfile
+|   |-- supervisord.conf
+|   |-- config/
+|
+|-- monitoring/
+|   |-- prometheus/
+|   |   |-- prometheus.yml
+|   |-- grafana/
+|   |   |-- dashboards/
+|   |   |-- provisioning/
+|   |-- qoe-exporter/
+|       |-- app.py
+|       |-- Dockerfile
+|
+|-- tools/
+|   |-- csv-exporter/
+|       |-- csv_exporter.py
+|
+|-- tr069-data/
+|   |-- data_model_easymesh.csv
+|   |-- easymesh_simulator_state.json
+|   |-- easymesh_simulator_summary.txt
+|
+|-- tfg-resultados/
+|   |-- scripts/
+|   |-- simulador/
+|   |   |-- csv/
+|   |   |-- capturas/
+|   |   |-- resumen/
+|   |-- evidencias/
+|
+|-- pag-web/
+|   |-- index.html
+|
+|-- README.md
 ```
 
 ---
@@ -428,13 +444,13 @@ docker network create `
   easymesh-lab_easymesh-net
 ```
 
-Si la red ya existe, Docker mostrará un mensaje de que ya está creada.
+Si la red ya existe, Docker indicara que ya esta creada.
 
 ---
 
 ### 6.3 Levantar el laboratorio completo
 
-Desde la raíz del repositorio:
+Desde la raiz del repositorio:
 
 ```powershell
 cd C:\EasyMesh-Lab
@@ -505,7 +521,7 @@ curl.exe http://localhost:9200/state
 
 ---
 
-### 7.4 Ejecutar escenario de saturación
+### 7.4 Ejecutar escenario de saturacion
 
 ```powershell
 curl.exe "http://localhost:9200/set?scenario=saturation"
@@ -519,11 +535,11 @@ curl.exe http://localhost:9200/state
 
 ```powershell
 curl.exe "http://localhost:9200/set?scenario=roaming"
-Start-Sleep -Seconds 90
+Start-Sleep -Seconds 120
 curl.exe http://localhost:9200/state
 ```
 
-El roaming depende de condiciones de RSSI. El evento `ClientSteering` aparece cuando el AP alternativo tiene una señal suficientemente mejor que el AP actual.
+El roaming depende de condiciones de RSSI. El evento `ClientSteering` aparece cuando el AP alternativo tiene una senal suficientemente mejor que el AP actual.
 
 ---
 
@@ -592,25 +608,61 @@ easymesh_sim_client_latency_ms{client="MOVIL_SARA"}
 easymesh_sim_client_jitter_ms{client="MOVIL_SARA"}
 ```
 
-### 9.7 Pérdida de paquetes
+### 9.7 Perdida de paquetes de MOVIL_SARA
 
 ```promql
 easymesh_sim_client_packet_loss_percent{client="MOVIL_SARA"}
 ```
 
-### 9.8 Utilización radio
+### 9.8 Retry rate de MOVIL_SARA
+
+```promql
+easymesh_sim_client_retry_rate_percent{client="MOVIL_SARA"}
+```
+
+### 9.9 Throughput de bajada
+
+```promql
+easymesh_sim_client_throughput_down_mbps{client="MOVIL_SARA"}
+```
+
+### 9.10 Throughput de subida
+
+```promql
+easymesh_sim_client_throughput_up_mbps{client="MOVIL_SARA"}
+```
+
+### 9.11 Utilizacion radio
 
 ```promql
 easymesh_sim_radio_utilization_percent
 ```
 
-### 9.9 RSSI del backhaul
+### 9.12 Ruido radio
+
+```promql
+easymesh_sim_radio_noise_dbm
+```
+
+### 9.13 RSSI del backhaul
 
 ```promql
 easymesh_sim_backhaul_rssi_dbm
 ```
 
-### 9.10 Eventos EasyMesh
+### 9.14 Latencia del backhaul
+
+```promql
+easymesh_sim_backhaul_latency_ms
+```
+
+### 9.15 Perdida del backhaul
+
+```promql
+easymesh_sim_backhaul_packet_loss_percent
+```
+
+### 9.16 Eventos EasyMesh
 
 ```promql
 easymesh_sim_event_info
@@ -626,34 +678,52 @@ easymesh_sim_event_info
 easymesh_csv_exporter_up
 ```
 
-### 10.2 Número de CSV guardados
+### 10.2 Numero de CSV guardados
 
 ```promql
 easymesh_csv_snapshots_total
 ```
 
-### 10.3 QoE desde CSV TR-181
+### 10.3 Ultimo CSV TR-181 leido
+
+```promql
+easymesh_csv_latest_snapshot_timestamp_seconds{kind="tr181"}
+```
+
+### 10.4 QoE desde CSV TR-181
 
 ```promql
 easymesh_csv_tr181_numeric_value{parameter="Device.X_SARA_QoE.QoEScore"}
 ```
 
-### 10.4 RSSI desde CSV TR-181
+### 10.5 RSSI desde CSV TR-181
 
 ```promql
 easymesh_csv_tr181_numeric_value{parameter="Device.X_SARA_QoE.SignalStrength"}
 ```
 
-### 10.5 Latencia desde CSV TR-181
+### 10.6 Latencia desde CSV TR-181
 
 ```promql
 easymesh_csv_tr181_numeric_value{parameter="Device.X_SARA_QoE.LatencyMs"}
 ```
 
-### 10.6 Eventos desde CSV TR-181
+### 10.7 Perdida desde CSV TR-181
+
+```promql
+easymesh_csv_tr181_numeric_value{parameter="Device.X_SARA_QoE.PacketLossPercent"}
+```
+
+### 10.8 Eventos desde CSV TR-181
 
 ```promql
 easymesh_csv_tr181_info{parameter=~".*Event.*"}
+```
+
+### 10.9 Escenario desde CSV TR-181
+
+```promql
+easymesh_csv_tr181_info{parameter=~".*Scenario.*"}
 ```
 
 ---
@@ -666,37 +736,37 @@ easymesh_csv_tr181_info{parameter=~".*Event.*"}
 genieacs_up
 ```
 
-### 11.2 Número de agentes EasyMesh
+### 11.2 Numero de agentes EasyMesh
 
 ```promql
 easymesh_agent_number
 ```
 
-### 11.3 Número de clientes WiFi
+### 11.3 Numero de clientes WiFi
 
 ```promql
 easymesh_total_client_number
 ```
 
-### 11.4 RSSI vía GenieACS
+### 11.4 RSSI via GenieACS
 
 ```promql
 easymesh_client_signal_strength_dbm
 ```
 
-### 11.5 QoE vía GenieACS
+### 11.5 QoE via GenieACS
 
 ```promql
 easymesh_client_qoe_state
 ```
 
-### 11.6 Utilización radio vía GenieACS
+### 11.6 Utilizacion radio via GenieACS
 
 ```promql
 easymesh_radio_utilization_avg_percent
 ```
 
-### 11.7 Backhaul vía GenieACS
+### 11.7 Backhaul via GenieACS
 
 ```promql
 easymesh_backhaul_rssi_dbm
@@ -718,7 +788,7 @@ Credenciales:
 admin / admin
 ```
 
-Crear dashboard automáticamente:
+Crear dashboard automaticamente:
 
 ```powershell
 cd C:\EasyMesh-Lab
@@ -732,33 +802,69 @@ Dashboard esperado:
 TFG EasyMesh - Simulador final TR-181 TR-069 QoE
 ```
 
----
-
-## 13. Evidencias recomendadas para el TFG
-
-Además de los CSV, se recomienda recoger:
+Paneles principales:
 
 ```text
-1. Captura de docker ps.
-2. Captura de http://localhost:9200/state.
-3. Captura de http://localhost:9200/metrics.
-4. Captura de http://localhost:9090/targets.
-5. Captura de Prometheus con easymesh_sim_client_qoe_score.
-6. Captura de Prometheus con easymesh_csv_tr181_numeric_value.
-7. Captura de GenieACS con el dispositivo 535241-EasyMeshVirtualCPE-200001.
-8. Captura de parámetros Device.WiFi.DataElements.Network en GenieACS.
-9. Captura del dashboard Grafana completo.
-10. Logs de easymesh-network-simulator.
-11. Logs de tr069-sim.
-12. Logs de genieacs-acs.
-13. Logs de genieacs-qoe-exporter.
-14. JSON exportado del dashboard Grafana.
-15. JSON de estado por escenario.
+Simulador EasyMesh activo
+GenieACS conectado
+CSV de evidencias guardados
+Steering acumulado
+RSSI MOVIL_SARA
+QoE MOVIL_SARA
+Latencia MOVIL_SARA
+Jitter MOVIL_SARA
+Perdida de paquetes MOVIL_SARA
+Utilizacion radio por AP
+Ruido radio por AP
+RSSI backhaul EasyMesh
+Latencia backhaul EasyMesh
+Evento EasyMesh actual
+QoE desde CSV TR-181
+RSSI desde CSV TR-181
+RSSI via GenieACS / TR-069
+Utilizacion radio via GenieACS
+Backhaul via GenieACS
 ```
 
 ---
 
-## 14. Comandos de validación rápida
+## 13. Evidencias recomendadas para el TFG
+
+Ademas de los CSV, se recomienda recoger:
+
+```text
+01_docker_ps.png
+02_simulador_state_normal.png
+03_simulador_state_interference.png
+04_simulador_metrics.png
+05_genieacs_cpe.png
+06_genieacs_parametros_tr181.png
+07_prometheus_targets.png
+08_prometheus_qoe_query.png
+09_prometheus_csv_query.png
+10_grafana_dashboard_normal.png
+11_grafana_dashboard_interference.png
+12_grafana_dashboard_roaming.png
+13_csv_generados.png
+14_repo_github.png
+```
+
+Tambien deben guardarse:
+
+```text
+logs_easymesh_network_simulator.txt
+logs_tr069_sim.txt
+logs_genieacs.txt
+logs_genieacs_qoe_exporter.txt
+logs_prometheus.txt
+grafana_dashboard_final.json
+state_<escenario>.json
+summary_<escenario>.txt
+```
+
+---
+
+## 14. Comandos de validacion rapida
 
 ### 14.1 Estado del simulador
 
@@ -766,13 +872,13 @@ Además de los CSV, se recomienda recoger:
 curl.exe http://localhost:9200/state
 ```
 
-### 14.2 Métricas del simulador
+### 14.2 Metricas del simulador
 
 ```powershell
 curl.exe http://localhost:9200/metrics | findstr /i "easymesh_sim"
 ```
 
-### 14.3 Targets Prometheus
+### 14.3 Targets de Prometheus
 
 ```powershell
 curl.exe "http://localhost:9090/api/v1/targets" | findstr /i "easymesh csv genieacs up"
@@ -790,19 +896,25 @@ curl.exe http://localhost:9210/metrics | findstr /i "easymesh_csv"
 curl.exe http://localhost:9108/metrics | findstr /i "genieacs_up easymesh"
 ```
 
+### 14.6 GenieACS NBI
+
+```powershell
+curl.exe http://localhost:7557/devices
+```
+
 ---
 
 ## 15. Estado actual del proyecto
 
 El laboratorio simulado ya dispone de:
 
-* simulador EasyMesh con escenarios dinámicos;
-* generación de CSV TR-181/DataElements;
-* generación de métricas Prometheus directas;
-* integración con tr069-sim;
-* integración con GenieACS;
+* simulador EasyMesh con escenarios dinamicos;
+* generacion de CSV TR-181/DataElements;
+* generacion de metricas Prometheus directas;
+* integracion con tr069-sim;
+* integracion con GenieACS;
 * exporter QoE desde GenieACS;
-* exporter de CSV históricos;
+* exporter de CSV historicos;
 * Prometheus;
 * Grafana;
 * dashboard automatizado;
@@ -821,21 +933,54 @@ Pendiente para cierre del TFG:
 
 ## 16. Laboratorio futuro con dispositivos reales
 
-El laboratorio actual está orientado a simulación. Para pruebas con equipos reales se propone crear un laboratorio Docker separado en:
+El laboratorio actual esta orientado a simulacion. Para pruebas con equipos reales se propone crear un laboratorio Docker separado en:
 
 ```text
 labs/docker-dispositivos-reales/
 ```
 
-En ese laboratorio no se usará el simulador como fuente principal. El flujo será:
+En ese laboratorio no se usara el simulador como fuente principal. El flujo sera:
 
 ```text
 CPE/router real
-    → TR-069/CWMP
-    → GenieACS
-    → exporter
-    → Prometheus
-    → Grafana
+    -> TR-069/CWMP
+    -> GenieACS
+    -> exporter
+    -> Prometheus
+    -> Grafana
 ```
 
-El objetivo será comparar qué parámetros TR-181 existen realmente en los equipos físicos y cuáles han sido simulados en el laboratorio actual.
+El objetivo sera comparar que parametros TR-181 existen realmente en los equipos fisicos y cuales han sido simulados en el laboratorio actual.
+
+---
+
+## 17. Nota sobre componentes legacy
+
+El repositorio puede contener componentes de fases anteriores del proyecto. Se conservan como referencia historica o experimental.
+
+Para la entrega final del TFG, el componente principal del laboratorio simulado es:
+
+```text
+simulator/easymesh-network-simulator/
+```
+
+Y el pipeline final de observabilidad es:
+
+```text
+easymesh-network-simulator
+    -> tr069-sim
+    -> GenieACS
+    -> genieacs-qoe-exporter
+    -> Prometheus
+    -> Grafana
+```
+
+junto con:
+
+```text
+tfg-resultados/simulador/csv
+    -> csv-prometheus-exporter
+    -> Prometheus
+    -> Grafana
+```
+
